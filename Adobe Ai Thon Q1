@@ -1,0 +1,38 @@
+# The line `from textblob import TextBlob` is importing the `TextBlob` class from the `textblob`
+# module. This allows us to use the `TextBlob` class to perform natural language processing tasks,
+# such as sentiment analysis, on text data.
+from textblob import TextBlob
+
+text = TextBlob(input("Enter your feedback: "))
+
+# The code `keyword = [word for(word,tag) in text.tags if tag == 'JJ']` is creating a list called
+# `keyword` that contains all the adjectives (words with the tag 'JJ') found in the input text.
+
+keyword = [word for(word,tag) in text.tags if tag == 'JJ']
+count = len(keyword) # `count = len(keyword)` is calculating the length of the `keyword` list and assigning it to the variable `count`. This gives us the number of adjectives found in the input text.
+sum = 0
+
+# The code `for adjectives in range(count):` is a loop that iterates over the range of the count
+# variable. It is used to iterate through each adjective in the keyword list.
+for adjectives in range(count):
+# The code `words = TextBlob(keyword[adjectives])` creates a new `TextBlob` object using the current
+# adjective from the `keyword` list. This allows us to perform sentiment analysis on that specific
+# adjective.
+    words = TextBlob(keyword[adjectives])
+    sum = sum + words.sentiment.polarity
+
+average = sum / (count)
+print(average)
+
+# The code `if average > 0: print("Positive 😁")` checks if the average sentiment polarity is greater
+# than 0. If it is, it prints "Positive 😁" to indicate that the feedback has a positive sentiment.
+if average > 0:
+    print("Positive 😁")
+elif average <0  :
+    print("Negative 😒")
+else:
+    print("Neutral 😐")
+
+
+
+
